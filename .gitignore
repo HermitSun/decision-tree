@@ -1,0 +1,5 @@
+# IDE conf
+.idea/
+
+# modules
+venv/
