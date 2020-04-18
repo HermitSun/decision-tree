@@ -1,4 +1,5 @@
 from numpy import log2
+from operator import itemgetter
 from typing import List
 
 
@@ -18,3 +19,19 @@ def calc_shannon_entropy(dataset: List[List[int]]) -> float:
         probability = float(feat_dict[feat]) / feat_counts
         shannon_entropy -= probability * log2(probability)
     return shannon_entropy
+
+
+# 多数选举
+# 也就是选出其中数目最大的
+def majority_count(class_list: List[int]) -> int:
+    class_count = {}
+    for vote in class_list:
+        if vote not in class_count.keys():
+            class_count[vote] = 0
+        class_count[vote] += 1
+    sorted_class_count = sorted(
+        class_count.iteritems(),
+        key=itemgetter(1),
+        reverse=True
+    )
+    return sorted_class_count[0][0]

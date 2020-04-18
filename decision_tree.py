@@ -1,5 +1,5 @@
 from data_process import dataset as data, labels
-from utils import calc_shannon_entropy
+from utils import calc_shannon_entropy, majority_count
 from tree_plotter import create_plot
 from typing import List
 
@@ -42,8 +42,8 @@ def create_tree(dataset: List[List[int]], labels: List[str]):
     if class_list.count(class_list[0]) == len(class_list):
         return class_list[0]
     # 全部遍历完成
-    # if len(dataset[0]) == 1:
-    #     return majority_count(class_list)
+    if len(dataset[0]) == 1:
+        return majority_count(class_list)
     best_feat = choose_best_feature_to_split(dataset)
     best_feat_label = labels[best_feat]
     decision_tree = {best_feat_label: {}}
@@ -60,6 +60,6 @@ def create_tree(dataset: List[List[int]], labels: List[str]):
     return decision_tree
 
 
-decision_tree = create_tree(data, labels)
+tree = create_tree(data, labels)
 
-create_plot(decision_tree)
+create_plot(tree)
