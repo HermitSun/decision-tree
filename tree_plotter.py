@@ -52,13 +52,13 @@ def plot_tree(my_tree, parent_pt, node_txt):
     plot_node(first_str, cntr_pt, parent_pt, decision_node)
     second_dict = my_tree[first_str]
     plot_tree.y_off = plot_tree.y_off - 1.0 / plot_tree.total_d
-    for key in second_dict.keys():
+    for i, key in enumerate(second_dict.keys()):
         if type(second_dict[key]).__name__ == 'dict':
-            plot_tree(second_dict[key], cntr_pt, 'yes' if key == 1 else 'no')
+            plot_tree(second_dict[key], cntr_pt, str(key))
         else:
             plot_tree.x_off = plot_tree.x_off + 1.0 / plot_tree.total_w
             plot_node(second_dict[key], (plot_tree.x_off, plot_tree.y_off), cntr_pt, leaf_node)
-            plot_mid_text((plot_tree.x_off, plot_tree.y_off), cntr_pt, 'yes' if key == 1 else 'no')
+            plot_mid_text((plot_tree.x_off - 0.05 * i, plot_tree.y_off - 0.06 * i), cntr_pt, str(key))
     plot_tree.y_off = plot_tree.y_off + 1.0 / plot_tree.total_d
 
 

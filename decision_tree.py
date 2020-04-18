@@ -37,7 +37,7 @@ def choose_best_feature_to_split(dataset: List[List[int]]) -> int:
 
 
 def create_tree(dataset: List[List[int]], labels: List[str]):
-    class_list = [example[-1] for example in dataset]
+    class_list = [feats[-1] for feats in dataset]
     # 类别完全相同，不再划分
     if class_list.count(class_list[0]) == len(class_list):
         return class_list[0]
